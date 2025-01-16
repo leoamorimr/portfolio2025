@@ -129,6 +129,16 @@ body {
     color: var(--response-color);
     margin-top: 5px;
     padding-left: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.response a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.response a:hover {
+    opacity: 0.8;
 }
 
 /* Botão de tema */
@@ -197,6 +207,22 @@ body {
 }
 
 @keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.blinking-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
     50% {
         opacity: 0;
     }
