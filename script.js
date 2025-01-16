@@ -14,46 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', newTheme);
     });
 
-    // Efeito de Digitação
-    const commands = document.querySelectorAll('.command');
-    let delay = 0;
-
-    // Esconde todas as respostas inicialmente
-    document.querySelectorAll('.response').forEach(response => {
-        response.style.opacity = '0';
-        response.style.transform = 'translateY(-10px)';
-        response.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    // Mostra todos os comandos e respostas imediatamente
+    document.querySelectorAll('.command').forEach(command => {
+        command.textContent = command.dataset.text;
     });
 
-    commands.forEach((command, index) => {
-        const text = command.dataset.text;
-        command.textContent = '';
-
-        setTimeout(() => {
-            typeText(command, text);
-        }, delay);
-
-        delay += 2000;
+    document.querySelectorAll('.response').forEach(response => {
+        response.style.opacity = '1';
+        response.style.transform = 'translateY(0)';
     });
 });
-
-function typeText(element, text) {
-    let index = 0;
-    const response = element.nextElementSibling;
-    const typingSpeed = 50;
-    const responseDelay = 300;
-
-    const typing = setInterval(() => {
-        if (index < text.length) {
-            element.textContent += text[index];
-            index++;
-        } else {
-            clearInterval(typing);
-            setTimeout(() => {
-                response.style.opacity = '1';
-                response.style.transform = 'translateY(0)';
-            }, responseDelay);
-        }
-    }, typingSpeed);
-}
 
